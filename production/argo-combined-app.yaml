@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD
     kustomize:
       images:
-      - gbulanov/argo-combined-app:latest
+      - gbulanov/argo-combined-app:78cd2e784f7f068efdb0365663078e8d6feb527f
   destination:
     server: https://kubernetes.default.svc
     namespace: production
@@ -23,4 +23,3 @@ spec:
       prune: true
     syncOptions:
     - CreateNamespace=true
-
