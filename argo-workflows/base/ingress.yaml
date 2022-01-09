@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: argo-workflows
@@ -12,13 +12,14 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-           name: argo-server
-           port:
-             number: 2746
-    host: acme.com
+    - host: argo-workflows.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
+      http:
+        paths:
+          - backend:
+              serviceName: argo-server
+              servicePort: 2746
+            path: /argo/(.*)
+          - backend:
+              serviceName: argo-server
+              servicePort: 2746
+            path: /argo
