@@ -1,26 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argo-workflows
-  namespace: argo
+  namespace: argocd
   annotations:
-    external-dns.alpha.kubernetes.io/alias: "true"
-    external-dns.alpha.kubernetes.io/target: argo-workflows.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-    - host: argo-workflows.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
-      http:
-        paths:
-          - backend:
-              serviceName: argo-workflows-1641740018-server
-              servicePort: 2746
-            path: /argo/(.*)
-          - backend:
-              serviceName: argo-workflows-1641740018-server
-              servicePort: 2746
-            path: /argo
-  ~
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+           name: argo-server
+           port:
+             number: 2746
+    host: argo-workflows.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
+
