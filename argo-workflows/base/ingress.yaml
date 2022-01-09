@@ -4,8 +4,6 @@ metadata:
   name: argo-workflows
   namespace: argo
   annotations:
-    external-dns.alpha.kubernetes.io/alias: "true"
-    external-dns.alpha.kubernetes.io/target: target.example.com
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
