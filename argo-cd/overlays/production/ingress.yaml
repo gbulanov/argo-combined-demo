@@ -1,19 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argocd-server
-  namespace: argocd
   annotations:
-    kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: argo-cd.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
-      http:
-        paths:
-          - backend:
-              serviceName: argocd-server
-              servicePort: 80
+  - http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+           name: argocd-server
+           port:
+             number: 80
+    host: argo-cd.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
+
