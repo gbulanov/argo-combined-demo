@@ -19,6 +19,8 @@ spec:
           value: nginx
         - name: controller.containerRuntimeExecutor
           value: 'k8sapi'
+        - name: 'server.ingress.hosts[0]'
+          value: argo-workflows.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argo
