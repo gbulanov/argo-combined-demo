@@ -179,7 +179,7 @@ spec:
     serviceAccountName: argo-events-sa
   dependencies:
     - name: github
-      eventSourceName: github
+      eventSourceName: github-node
       eventName: node-3tier-app
   triggers:
     - template:
