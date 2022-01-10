@@ -19,7 +19,7 @@ spec:
              number: 12000
     host: acme.com
 
-
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -36,7 +36,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: webhook-eventsource-svc
+                name: webhook-node-eventsource-svc
                 port:
                   number: 12000
       host: acme.com
