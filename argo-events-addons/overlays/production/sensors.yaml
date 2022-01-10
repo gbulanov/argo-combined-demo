@@ -222,7 +222,7 @@ spec:
                       tasks:
                         - name: build
                           templateRef:
-                            name: container-image
+                            name: container-image-node-api
                             template: build-kaniko-git
                             clusterScope: true
                           arguments:
