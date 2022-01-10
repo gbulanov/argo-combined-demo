@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki-stack
+  name: loki
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -9,22 +9,10 @@ spec:
   project: production
   source:
     repoURL: 'https://github.com/grafana/helm-charts.git'
-    path: charts/loki-stack
+    path: charts/loki
     targetRevision: HEAD
     helm:
       parameters:
-        - name: grafana.enabled
-          value: 'true'
-        - name: prometheus.enabled
-          value: 'true'
-        - name: loki.enabled
-          value: 'true'
-        - name: promtail.enabled
-          value: 'true'
-        - name: prometheus.alertmanager.persistentVolume.enabled
-          value: 'true'
-        - name: prometheus.server.persistentVolume.enabled
-          value: 'true'
         - name: loki.persistence.enabled
           value: 'true'
         - name: loki.persistence.storageClassName
