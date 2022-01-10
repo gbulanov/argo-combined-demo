@@ -180,7 +180,7 @@ spec:
   dependencies:
     - name: github-node
       eventSourceName: github-node
-      eventName: node-3tier-app
+      eventName: node-3tier-app-api
   triggers:
     - template:
         name: trigger-node
