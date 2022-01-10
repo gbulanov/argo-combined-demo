@@ -49,3 +49,32 @@ spec:
            port:
              number: 12000
     host: webhook.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: github-node
+spec:
+  service:
+    ports:
+      - port: 12000
+        targetPort: 12000
+  github:
+    argo-combined-app:
+      owner: gbulanov
+      repository: node-3tier-app
+      webhook:
+        endpoint: /node-3tier-app
+        port: "12000"
+        method: POST
+        url: http://webhook.dev-ops-experiments.eu-west-2.fdp-infra.fredhopper.com
+      events:
+        - "*"
+      apiToken:
+        name: github-access
+        key: token
+      insecure: true
+      active: true
+      contentType: json
